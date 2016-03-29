@@ -108,7 +108,7 @@
 			\(x_{41}^{*} = 5 \), \(x_{42}^{*} = 25 \), \(x_{43}^{*} = 30 \), \(x_{56}^{*} = 25 \) lo cual resulta en \(z^{*} = 4850 \).
 
 			\paragraph{}
-			La traducción de este resultado nos indica que para que el empresario pueda tener al menos 100 cartuchos en cada una de sus tiendas tendrá que envíar:
+			\textbf{Solución:} La traducción de este resultado nos indica que para que el empresario pueda tener al menos 100 cartuchos en cada una de sus tiendas tendrá que envíar:
 
 			\begin{itemize}
 				\item 5 cartuchos de la tienda 4 a la tienda 1.
@@ -122,6 +122,10 @@
 		\subsection{?`En cuánto puede variar el coste de envío entre las tiendas 4 y 6 para que la solución Óptima calculada en el apartado (a) se mantenga? Razonar la respuesta.}
 
 			\paragraph{}
+			En este caso necesitamos conocer el intervalo de optimalidad asociado la modificación del valor de coste de la variable \(x_{46}\) en la función objetivo. Dado que esta variable es no básica (su valor es cero cuando el resultado de la función objetivo es óptimo) nos fijaremos en el valor \(z_{k}\) para la restricción inferior e infinito en la restricción superior. Por tanto el intervalo es \((30,\infty)\)
+
+			\paragraph{}
+			\textbf{Solución:} El coste de transportar cartuchos de la tienda 4 a la tienda 6 para que la solución encontrada siga siendo óptima puede reducirse en 10 centimos o aumentar indefinidamente. El motivo es que Enviarlos desde la tienda 5 tiene un coste de 30 centimos.
 
 
 		\subsection{Sin realizar iteraciones, obtener la nueva solución si el número de cartuchos disponibles en la tienda número 3 disminuye a 65 y el de la tienda 5 aumenta a 135 unidades. Justificar la respuesta.}

@@ -4,6 +4,7 @@
 
 \usepackage{varwidth}
 \usepackage{graphicx}
+\usepackage{eurosym} % para el euro
 
 \usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
 
@@ -16,6 +17,7 @@
 \usepackage{hyperref} % For hyperlinks in the PDF
 
 
+\usepackage{amsmath,amssymb}
 
 
 \usepackage{titlesec} % Allows customization of titles
@@ -67,9 +69,57 @@
 		\subsection{Determinar la mejor manera de distribuir los cartuchos entre las tiendas.}
 
 			\paragraph{}
+			Lo primero que haremos será modelar el enunciado del problema. Se ha tenido en cuenta el detalle que indica que los envíos de cartuchos tan solo son posibles desde las tiendas que tienen un exceso de cartuchos (más de 100) a las que tienen déficit (menos de 100).
 
+			\paragraph{}
+			La notación que se va a utilizar para denotar las variables es la siguiente:
+			\paragraph{}
+			\(x_{ij}\) = Número de cartuchos enviados desde la tienda \(i\) hasta la tienda \(j\). \(\quad i=4,5,7. \quad j=1,2,3,6.\)
 
-		\subsection{?`En cuánto puede variar el coste de eníoo entre las tiendas 4 y 6 para que la solución Óptima calculada en el apartado (a) se mantenga? Razonar la respuesta.}
+			\paragraph{}
+			Notese que tal y como indica el enunciado del problema la función objetivo de este consistirá en minimizar la suma de costes necesarios para llegar al objetivo del número de cartuchos por tienda. Por tanto las restricciones asociadas al problema servirán para restringir el tanto el número de cartuchos que se pueden envíar a partir de una tienda de origen, como el número necesario de cartuchos que se necesitan en el caso de las tiendas de destino.
+
+			\paragraph{}
+			A continuación se muestra la modelización del problema:
+
+			\[
+			  \begin{array}{r@{}r@{}r@{}r@{}r@{}r@{}r@{}r@{}r@{}r@{}l}
+			    \text{Min} \quad z=	80x_{41} &{} + 76x_{42} &{} + 60x_{43} &{} + 40x_{46} &{} + 96x_{51} &{} + 84x_{52} &{} + 60x_{53} &{} + 30x_{56} &{} + 130x_{73} &{} + 70x_{76} &{} \\[\jot]
+			    \text{sujeto a}\qquad 	x_{41} &{} +   x_{42} &{} +   x_{43} &{} +   x_{46} &{}   &{}   &{}   &{}   &{}   &{}   &{} \leq 65 \\
+			                     	&{}  &{}  &{}  &{} x_{51} &{} + x_{52} &{} + x_{53} &{} + x_{56} &{}  &{}  &{} \leq 30 \\
+								 	&{} &{}  &{}  &{}  &{} &{}  &{}  &{} x_{73} &{} + x_{76} &{} \leq 20 \\
+								 	x_{41} &{} &{} &{} &{} + x_{51} &{} &{}  &{}  &{} &{}  &{} \geq 5 \\
+								 	&{}  x_{42} &{}  &{} &{}  &{} + x_{52} &{}  &{}  &{} &{}  &{} \geq 25 \\
+								 	 &{}  &{}  x_{43} &{}  &{}  &{}  &{} + x_{53} &{}  &{} + x_{73} &{}  &{} \geq 30 \\
+								 	&{}  &{}  &{} x_{46} &{}  &{}  &{}  &{} + x_{56} &{}  &{} + x_{76} &{} \geq 25 \\
+			     \multicolumn{10}{c}{x_{ij} \geq 0, \quad i=4,5,7. \quad j=1,2,3,6.}
+			  \end{array}
+			\]
+			\paragraph{}
+			La tabla simplex final resultante es la siguiente:
+
+			\begin{figure}[H]
+	        \centering
+	            \includegraphics[width=\textwidth]{res/Exercise_1_pp_simplex_final.png}
+	        \end{figure}
+
+			\paragraph{}
+			Si nos fijamos en la última columna objervamos que los valores que consiguen el óptimo de la función objetivo son:
+			\(x_{41}^{*} = 5 \), \(x_{42}^{*} = 25 \), \(x_{43}^{*} = 30 \), \(x_{56}^{*} = 25 \) lo cual resulta en \(z^{*} = 4850 \).
+
+			\paragraph{}
+			La traducción de este resultado nos indica que para que el empresario pueda tener al menos 100 cartuchos en cada una de sus tiendas tendrá que envíar:
+
+			\begin{itemize}
+				\item 5 cartuchos de la tienda 4 a la tienda 1.
+				\item 25 cartuchos de la tienda 4 a la tienda 2.
+				\item 30 cartuchos de la tienda 4 a la tienda 3.
+				\item 25 cartuchos de la tienda 5 a la tienda 6.
+			\end{itemize}
+
+			Esto le ocasionará un coste de 4850 céntimos de euro, es decir, 48.50\euro
+
+		\subsection{?`En cuánto puede variar el coste de envío entre las tiendas 4 y 6 para que la solución Óptima calculada en el apartado (a) se mantenga? Razonar la respuesta.}
 
 			\paragraph{}
 

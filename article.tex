@@ -4,6 +4,7 @@
 
 \usepackage{varwidth}
 \usepackage{graphicx}
+\usepackage{eurosym} % para el euro
 
 \usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
 
@@ -16,6 +17,7 @@
 \usepackage{hyperref} % For hyperlinks in the PDF
 
 
+\usepackage{amsmath,amssymb}
 
 
 \usepackage{titlesec} % Allows customization of titles
@@ -67,32 +69,270 @@
 		\subsection{Determinar la mejor manera de distribuir los cartuchos entre las tiendas.}
 
 			\paragraph{}
-
-
-		\subsection{?`En cuánto puede variar el coste de eníoo entre las tiendas 4 y 6 para que la solución Óptima calculada en el apartado (a) se mantenga? Razonar la respuesta.}
+			Lo primero que haremos será modelar el enunciado del problema. Se ha tenido en cuenta el detalle que indica que los envíos de cartuchos tan solo son posibles desde las tiendas que tienen un exceso de cartuchos (más de 100) a las que tienen déficit (menos de 100).
 
 			\paragraph{}
+			La notación que se va a utilizar para denotar las variables es la siguiente:
+			\paragraph{}
+			\(x_{ij}\) = Número de cartuchos enviados desde la tienda \(i\) hasta la tienda \(j\). \(\quad i=4,5,7. \quad j=1,2,3,6.\)
+
+			\paragraph{}
+			Notese que tal y como indica el enunciado del problema la función objetivo de este consistirá en minimizar la suma de costes necesarios para llegar al objetivo del número de cartuchos por tienda. Por tanto las restricciones asociadas al problema servirán para restringir el tanto el número de cartuchos que se pueden envíar a partir de una tienda de origen, como el número necesario de cartuchos que se necesitan en el caso de las tiendas de destino.
+
+			\paragraph{}
+			A continuación se muestra la modelización del problema:
+
+			\[
+			  \small
+			  \begin{array}{r@{}r@{}r@{}r@{}r@{}r@{}r@{}r@{}r@{}r@{}l}
+			    \text{Min} \quad z=	80x_{41} &{} + 76x_{42} &{} + 60x_{43} &{} + 40x_{46} &{} + 96x_{51} &{} + 84x_{52} &{} + 60x_{53} &{} + 30x_{56} &{} + 130x_{73} &{} + 70x_{76} &{} \\[\jot]
+			    \text{sujeto a}\qquad 	x_{41} &{} +   x_{42} &{} +   x_{43} &{} +   x_{46} &{}   &{}   &{}   &{}   &{}   &{}   &{} \leq 65 \\
+			                     	&{}  &{}  &{}  &{} x_{51} &{} + x_{52} &{} + x_{53} &{} + x_{56} &{}  &{}  &{} \leq 30 \\
+								 	&{} &{}  &{}  &{}  &{} &{}  &{}  &{} x_{73} &{} + x_{76} &{} \leq 20 \\
+								 	x_{41} &{} &{} &{} &{} + x_{51} &{} &{}  &{}  &{} &{}  &{} \geq 5 \\
+								 	&{}  x_{42} &{}  &{} &{}  &{} + x_{52} &{}  &{}  &{} &{}  &{} \geq 25 \\
+								 	 &{}  &{}  x_{43} &{}  &{}  &{}  &{} + x_{53} &{}  &{} + x_{73} &{}  &{} \geq 30 \\
+								 	&{}  &{}  &{} x_{46} &{}  &{}  &{}  &{} + x_{56} &{}  &{} + x_{76} &{} \geq 25 \\
+			     \multicolumn{10}{c}{x_{ij} \geq 0, \quad i=4,5,7. \quad j=1,2,3,6.}
+			  \end{array}
+			\]
+			\paragraph{}
+			La tabla simplex final resultante es la siguiente:
+
+			\begin{figure}[H]
+	        \centering
+	            \includegraphics[width=\textwidth]{res/Exercise_1_pp_simplex_final.png}
+	        \end{figure}
+
+			\paragraph{}
+			Si nos fijamos en la última columna objervamos que los valores que consiguen el óptimo de la función objetivo son:
+			\(x_{41}^{*} = 5 \), \(x_{42}^{*} = 25 \), \(x_{43}^{*} = 30 \), \(x_{56}^{*} = 25 \) lo cual resulta en \(z^{*} = 4850 \).
+
+			\paragraph{}
+			\textbf{Solución:} La traducción de este resultado nos indica que para que el empresario pueda tener al menos 100 cartuchos en cada una de sus tiendas tendrá que envíar:
+
+			\begin{itemize}
+				\item 5 cartuchos de la tienda 4 a la tienda 1.
+				\item 25 cartuchos de la tienda 4 a la tienda 2.
+				\item 30 cartuchos de la tienda 4 a la tienda 3.
+				\item 25 cartuchos de la tienda 5 a la tienda 6.
+			\end{itemize}
+
+			Esto le ocasionará un coste de 4850 céntimos de euro, es decir, 48.50\euro
+
+		\subsection{?`En cuánto puede variar el coste de envío entre las tiendas 4 y 6 para que la solución Óptima calculada en el apartado (a) se mantenga? Razonar la respuesta.}
+
+			\paragraph{}
+			En este caso necesitamos conocer el intervalo de optimalidad asociado la modificación del valor de coste de la variable \(x_{46}\) en la función objetivo. Dado que esta variable es no básica (su valor es cero cuando el resultado de la función objetivo es óptimo) nos fijaremos en el valor \(z_{k}\) para la restricción inferior e infinito en la restricción superior. Por tanto el intervalo es \((30,\infty)\)
+
+			\paragraph{}
+			\textbf{Solución:} El coste de transportar cartuchos de la tienda 4 a la tienda 6 para que la solución encontrada siga siendo óptima puede reducirse en 10 centimos o aumentar indefinidamente. El motivo es que Enviarlos desde la tienda 5 tiene un coste de 30 centimos.
 
 
 		\subsection{Sin realizar iteraciones, obtener la nueva solución si el número de cartuchos disponibles en la tienda número 3 disminuye a 65 y el de la tienda 5 aumenta a 135 unidades. Justificar la respuesta.}
 
 			\paragraph{}
+			Tenemos que realizar un análisis de sensibilidad debido a un cambio el vector del lado derecho (LD).
 
+
+			\[
+			b^{'0} = B^{-1}b^{'} =
+			\begin{bmatrix}
+			    5 \\
+			    5 \\
+				20 \\
+				5 \\
+				25 \\
+				30 \\
+				25
+			\end{bmatrix}
+			-5
+			\begin{bmatrix}
+			    1 \\
+			    0 \\
+				0 \\
+				0 \\
+				0 \\
+				-1 \\
+				0
+			\end{bmatrix}
+			+5
+			\begin{bmatrix}
+			    0 \\
+			    1 \\
+				0 \\
+				0 \\
+				0 \\
+				0 \\
+				0
+			\end{bmatrix}
+			=
+			\begin{bmatrix}
+			    0 \\
+			    10 \\
+				20 \\
+				5 \\
+				25 \\
+				35 \\
+				25
+			\end{bmatrix}
+			\]
+
+			\paragraph{}
+			Dado que todas las variables de este quedan positivas sabemos que la base anterior sigue siendo una solución básica factible, por tanto la nueva solución es:
+
+			\(x_{41}^{*} = 5 \), \(x_{42}^{*} = 25 \), \(x_{43}^{*} = 35 \), \(x_{56}^{*} = 25 \) lo cual resulta en \[
+				z^{'*} = z^{0} -5 *(-60) + 5*0 = 4850 + 300 = 5160
+			\]
+
+		\subsection{Sin resolver desde el principio el problema y utilizando la tabla simplex Óptima, determinar la nueva solución si el número de cartuchos de la tienda número 2 disminuye a 65 y el de la tienda 5 aumenta a 135 unidades. Justificar la respuesta.}
+
+			\paragraph{}
+			Tenemos que realizar un análisis de sensibilidad debido a un cambio el vector del lado derecho (LD).
+
+			\[
+			b^{'0} = B^{-1}b^{'} =
+			\begin{bmatrix}
+				5 \\
+				5 \\
+				20 \\
+				5 \\
+				25 \\
+				30 \\
+				25
+			\end{bmatrix}
+			-10
+			\begin{bmatrix}
+				1 \\
+				0 \\
+				0 \\
+				0 \\
+				-1 \\
+				0 \\
+				0
+			\end{bmatrix}
+			+5
+			\begin{bmatrix}
+				0 \\
+				1 \\
+				0 \\
+				0 \\
+				0 \\
+				0 \\
+				0
+			\end{bmatrix}
+			=
+			\begin{bmatrix}
+				-5 \\
+				10 \\
+				20 \\
+				5 \\
+				15 \\
+				30 \\
+				25
+			\end{bmatrix}
+			\]
+
+			\paragraph{}
+			En este caso el vector del lado derecho ha sido modificado dando lugar a que algunas de sus componentes pasen a ser negativas, por lo que ya no será una solución básica factible por lo que tendremos que realizar iteracciónes hasta llegar otra vez a ella.
+
+			\[
+				z^{'*} = z^{0} -10 *(-76) +5*0 = 4850 + 760 = 5610
+			\]
+
+			El resultado de realizar iteracciones (sale la variable de holgura asociada a la primera restricción y entra \(x_{53}\) da como resultado óptimo:
+			\(x_{41}^{*} = 5 \), \(x_{42}^{*} = 35 \), \(x_{43}^{*} = 25 \), \(x_{56}^{*} = 25 \), \(x_{53}^{*} = 5 \) lo cual resulta en \[
+				z^{*} = 5610
+			\]
 
 		\subsection{Escribir el problema dual del formulado en el apartado (a)}
 
 			\paragraph{}
+			El problema dual asociado al formulado en el apartado (a) es el siguiente. Consiste en hacer que las restricciones pasen a ser variables y viceversa, aplicando los correspondientes cambios.
 
+
+			\[
+			  \begin{array}{r@{}r@{}r@{}r@{}r@{}r@{}r@{}l}
+			    \text{Max} \quad z = 65w_{1} &{} +30w_{2} &{} + 20w_{3} &{} + 5w_{4} &{} + 25w_{5} &{} + 30w_{6} &{} + 25w_{7} &{} \\[\jot]
+			    \text{sujeto a}\qquad 	w_{1} &{} 		&{} 		&{} + w_{4} &{} &{} &{}  &{} \leq 80 \\
+			                     		w_{1} &{} 		&{} 		&{} 		&{} + w_{5}&{} &{}  &{} \leq 76 \\
+								 		w_{1} &{} 		&{} 		&{} 		&{} &{} + w_{6}&{}  &{} \leq 60 \\
+								 		w_{1} &{} 		&{} 		&{} 		&{} &{} &{} + w_{7} &{} \leq 40  \\
+								 		      &{} w_{2} &{} 		&{} + w_{4}	&{} &{} &{}  &{} \leq 96 \\
+											  &{} w_{2} &{} 		&{} 		&{} + w_{5} &{} &{}  &{} \leq 84 \\
+											  &{} w_{2} &{} 		&{} 		&{} &{} + w_{6}&{}  &{} \leq 60 \\
+											  &{} w_{2} &{} 		&{} 		&{} &{} &{} + w_{7} &{} \leq 30 \\
+											  &{} 		&{} w_{3} 	&{} 		&{} &{} + w_{6} &{}  &{} \leq 130 \\
+											  &{} 		&{} w_{3} 	&{} 		&{} &{} &{} +w_{7} &{} \leq 70 \\
+			     \multicolumn{6}{c}{w_{1}, w_{2}, w_{3} \leq 0, w_{4}, w_{5}, w_{6}, w_{7} \geq 0}
+
+
+			  \end{array}
+			\]
 
 		\subsection{Resolver el problema del apartado (e) utilizando las condiciones de holgura complementaria. ?`Es única la solución? Razonar la respuesta.}
 
 			\paragraph{}
+			Aplicando el teorema de holgura complementaria llegamos a las siguientes ecuaciones(se han omitido aquellas que iban a ser triviales al dar valores a las variables \(x_{ij}\)):
 
+			\[
+			\begin{split}
+				(w_{1} + w_{4} - 80)x_{41} = 0 \\
+				(w_{1} + w_{5} - 76)x_{41} = 0 \\
+				(w_{1} + w_{6} - 60)x_{41} = 0 \\
+				(w_{2} + w_{7} - 30)x_{41} = 0 \\
+			\end{split}
+			\]
+
+			\paragraph{}
+			Ahora sustituimos \(x_{ij}\) por los valores óptimos del problema primal:
+
+			\[
+			\begin{split}
+				(w_{1} + w_{4} - 80)5 = 0 \\
+				(w_{1} + w_{5} - 76)25 = 0 \\
+				(w_{1} + w_{6} - 60)30 = 0 \\
+				(w_{2} + w_{7} - 30)25 = 0 \\
+			\end{split}
+			\]
+			\paragraph{}
+			Operando llegamos al siguiente resultado, que como vemos es un sistema compatible indeterminado, por tanto tiene infinitas soluciones:
+
+			\[
+			\begin{split}
+				w_{1} + w_{4} = 80 \\
+				w_{1} + w_{5} = 76 \\
+				w_{1} + w_{6} = 60 \\
+				w_{2} + w_{7} = 30 \\
+			\end{split}
+			\]
+
+			\paragraph{}
+			Una solucion, por tanto, es: \(w_{4}^{*} = 80 \), \(w_{5}^{*} = 76 \), \(w_{6}^{*} = 60 \), \(w_{7}^{*} = 30 \)lo cual resulta en \(z^{*} = 4850\)
 
 		\subsection{Suponer ahora que los cartuchos se pueden enviar entre todas las tiendas conectadas. Modelizar, sin resolver, este nuevo problema.}
 
 			\paragraph{}
-
+			\[
+			    \small
+			    \begin{split}
+				    \text{Min} \quad z = 35(x_{12}+x_{21}) + 50(x_{13}+x_{31}) + 80(x_{14}+x_{41}) + 96(x_{15}+x_{51}) \\
+			        + 44(x_{23}+x_{32}) + 76(x_{24}+x_{42})+ 84(x_{25}+x_{52}) + 60(x_{34}+x_{43}) \\
+			        + 60(x_{35}+x_{53}) + 70(x_{36}+x_{63}) + 130(x_{37}+x_{73}) + 22(x_{45}+x_{54})  \\
+			        + 40(x_{46}+x_{64}) + 60(x_{47}+x_{74}) + 30(x_{56}+x_{65}) + 55(x_{57}+x_{75}) \\
+			        + 70(x_{67}+x_{76})  \\
+			                            \\
+			        \text{sujeto a}
+			        \qquad 	x_{21} - x_{12} + x_{31} - x_{13} + x_{41} - x_{14} + x_{51} - x_{15}  \geq 5  \\
+			        \qquad 	x_{12} - x_{21} + x_{32} - x_{23} + x_{42} - x_{24} + x_{52} - x_{25}  \geq 25  \\
+			        \qquad 	x_{13} - x_{31} + x_{23} - x_{32} + x_{43} - x_{34} + x_{53} - x_{35} + x_{63} - x_{36} + x_{73} - x_{37} \geq 30  \\
+			        \qquad 	x_{14} - x_{41} + x_{24} - x_{42} + x_{34} - x_{43} + x_{54} - x_{45} + x_{64} - x_{46} + x_{74} - x_{47} \geq -65  \\
+			        \qquad 	x_{15} - x_{51} + x_{25} - x_{52} + x_{35} - x_{53} + x_{45} - x_{54} + x_{65} - x_{56} + x_{75} - x_{57}  \geq -30  \\
+			        \qquad 	x_{36} - x_{63} + x_{46} - x_{64} + x_{56} - x_{65} + x_{76} - x_{67}  \geq 25  \\
+			        \qquad 	x_{37} - x_{73} + x_{47} - x_{74} + x_{57} - x_{76} + x_{67} - x_{76}  \geq -20  \\
+			        \qquad  x_{ij} \geq 0, i=1,2,3,4,5,7. \quad j=1,2,3,4,5,6,7.
+			    \end{split}
+			    \]
 
     \section{Ejercicio 2}
 
@@ -104,26 +344,92 @@
 		\subsection{Formular un modelo de PL para determinar el plan Óptimo de compras y de pagos que maximice los beneficios al final del periodo de tres años.}
 
 			\paragraph{}
+			El problema se ha formulado entendiendo del enunciado los siguiente: Se puede comprar equipos tan solo al principio de la planificación. Estos se pagarán en tres plazos, el primero en el momento de la compra de al menos el 30\%, el segundo del al menos el 60\% cuando haya pasado un año y el ultimo cuando haya pasado otro año completando el importe restante. Además cada año se paga un 5\% de interés por el porcentaje de pago que todavía no se ha completado. Los equipos se pueden vender en cualquier momento devaluandose un 25\% cada año. El presupuesto disponible al principio de la planificación es de 16200 \euro y cada año se pueden utilizar los ingresos para pagar los equipos.
 
+			\paragraph{}
+			Para modelizar el problema según el razonamiento expuesto se han utilizado las siguientes variables:
+
+			\begin{itemize}
+				\item \(v_{ij} = \) Número de equipos comprados al principio de la planificación del tipo i que se venderán al final del año j \(i = (a,b,c), j=(1,2,3)\)
+				\item \(p_{i} = \) Cantidad de euros que se pagará al inicio del año i por los equipos(sin incluir intereses). \(i = (a,b,c)\)
+				\item \(r_{i} = \) Cantidad de euros que sobran (son beneficios) al final del año i. \(i = (a,b,c)\)
+			\end{itemize}
+
+			\paragraph{}
+			La modelización del problema es por tanto la siguiente:
+
+			\[
+			\begin{split}
+				\text{Min} \quad z =1430v_{a3} + 624v{b3} + 550v_{c3} + r_{3}  \\
+									\\ \\
+				\text{sujeto a}
+				\qquad 	0.7p_{1} - 0.3p_{2} - 0.3p_{3} \leq 0  \\ \\
+				\qquad 	0.4p_{1} + 0.4p_{2} - 0.6p_{3} \leq 0  \\ \\
+				\qquad 	p_{1} + r_{1} = 16200  \\ \\
+				\qquad 	2225v_{a1} + 875v_{a2} + 875v_{a3} + 1010v_{b1} + 335v_{b2} + 335v_{b3} + 1350v_{c1} \\
+				+ 450v_{c2} + 450v_{c3} + r_{1} - r_{2} - 1.05p_{2} - 0.05p_{3}  = 0  \\ \\
+				\qquad 	1820v_{a2} + 920v_{a3} + 826v_{b2} + 376v_{b3} + 1200v_{c2} + 600v_{c3} + r_{2} - r_{3} - 1.05p_{3} = 0   \\
+			\end{split}
+			\]
+
+			\paragraph{}
+			La tabla simplex final resultante es la siguiente:
+
+			\begin{figure}[H]
+			\centering
+				\includegraphics[width=\textwidth]{res/Exercise_2_pp_simplex_final.png}
+			\end{figure}
 
 		\subsection{?`Cuál es el plan Óptimo?}
 
 			\paragraph{}
-
+			\textbf{Solución:} El plan óptimo es la compra de \textbf{30 equipos de tipo A}, los cuales se pagaran de la siguiente forma:
+			\begin{itemize}
+				\item \textbf{16200} \euro en el momento de la compra.
+				\item 24360 \euro más intereses en el segundo plazo, es decir, \textbf{26250} \euro
+				\item 13440 \euro más intereses en el ultimo plazo, es decir, \textbf{14112} \euro
+			\end{itemize}
 
 		\subsection{Escribir el problema dual del formulado en el apartado (a).}
 
 			\paragraph{}
+			El problema dual asociado al formulado en el apartado (a) es el siguiente. Consiste en hacer que las restricciones pasen a ser variables y viceversa, aplicando los correspondientes cambios.
+
+			\[
+			  \begin{array}{r@{}r@{}r@{}r@{}r@{}r@{}l}
+			    \text{Max} \quad z = 16200w_{6} \\[\jot]
+			    \text{sujeto a}\qquad 	1800w_{1} 	&{} 		&{} 		&{} +2225w_{4} 	&{} 			&{}			\geq 0 \\
+			                     		1800w_{1} 	&{} 		&{} 		&{} +875w_{4}	&{} +1820w_{5}	&{}			\geq 0 \\
+								 		1800w_{1} 	&{} 		&{} 		&{} +875w_{4}	&{} +920w_{5}	&{} 		\geq 1430 \\
+								 		900w_{1}  	&{} 		&{} 		&{} +1010w_{4}	&{} 			&{}     	\geq 0  \\
+								 		900w_{1}  	&{} 		&{} 		&{} +335w_{4}	&{} +826w_{5}	&{}  		\geq 0 \\
+										900w_{1}    &{} 		&{} 		&{} +335w_{4} 	&{} +376w_{5}	&{}  		\geq 624 \\
+										1200w_{1}   &{}  		&{} 		&{} +1350w_{4}	&{} 			&{}  		\geq 0 \\
+										1200w_{1}   &{}  		&{} 		&{} +450w_{4}	&{} +1200w_{5}	&{} 		\geq 0 \\
+										1200w_{1}  	&{} 		&{} 	 	&{} +450w_{4}	&{} +600w_{5}	&{} 		\geq 550 \\
+										-w_{1}		&{}-0.7 w_{2}&{}-0.4w_{3}&{} 			&{} 			&{} + w_{6} \geq 0 \\
+										-w_{1}		&{}+0.3 w_{2}&{}-0.4w_{3}&{}-1.05w_{4} 	&{} 			&{} 		\geq 0 \\
+										-w_{1}		&{}+0.3 w_{2}&{}+0.6w_{3}&{}-0.05w_{4} 	&{} -1.05w_{5}	&{} 		\geq 0 \\
+													&{} 		&{} 	 	&{}w_{4} 		&{} 			&{} + w_{6}	\geq 0 \\
+													&{} 		&{}  		&{}-w_{4} 	 	&{} +w_{5}		&{}			\geq 0 \\
+													&{} 		&{}  		&{} 			&{} -w_{5}		&{}			\geq 1 \\
+			     \multicolumn{6}{c}{ w_{2}, w_{3} \geq 0, w_{1}, w_{4}, w_{5}, w_{6} s.r.s}
+
+
+			  \end{array}
+			\]
 
 
 		\subsection{Determinar la solución Óptima del problema formulado en (c) utilizando las condiciones de holgura complementaria.}
 
 			\paragraph{}
+			Aplicando el teorema de holgura complementaria llegamos a la siguiente solución: \(w_{1}^{*} = 1.82 \), \(w_{2}^{*} = 2.38 \), \(w_{4}^{*} = -1.05 \), \(w_{5}^{*} = -1 \), \(w_{6}^{*} = 3.48 \)lo cual resulta en \(z^{*} = 56388\)
 
 
 		\subsection{Interpretar la variable dual asociada a la restricción del presupuesto disponible.}
 
 			\paragraph{}
+			Esta variable indica la proporción máxima de intereses que debemos estar dispuestos por los pagos a plazos de los equipos para que la solución encontrada siga siendo óptima.
 
 
 \end{document}

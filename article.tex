@@ -228,7 +228,7 @@
 
 			\paragraph{}
 			El problema dual asociado al formulado en el apartado (a) es el siguiente. Consiste en hacer que las restricciones pasen a ser variables y viceversa, aplicando los correspondientes cambios.
-				
+
 
 			\[
 			  \begin{array}{r@{}r@{}r@{}r@{}r@{}r@{}r@{}l}
@@ -270,6 +270,20 @@
 
 			\paragraph{}
 
+			\[
+\begin{split}
+				\text{Min} \quad z =1430v_{a3} + 624v{b3} + 550v_{c3} + r_{3}  \\
+									\\ \\
+				\text{sujeto a}
+				\qquad 	0.7p_{1} - 0.3p_{2} - 0.3p_{3} \leq 0  \\ \\
+				\qquad 	0.4p_{1} + 0.4p_{2} - 0.6p_{3} \leq 0  \\ \\
+				\qquad 	p_{1} + r_{1} = 16200  \\ \\
+				\qquad 	2225v_{a1} + 875v_{a2} + 875v_{a3} + 1010v_{b1} + 335v_{b2} + 335v_{b3} + 1350v_{c1} \\
+				+ 450v_{c2} + 450v_{c3} + r_{1} - r_{2} - 1.05p_{2} - 0.05p_{3}  = 0  \\ \\
+				\qquad 	1820v_{a2} + 920v_{a3} + 826v_{b2} + 376v_{b3} + 1200v_{c2} + 600v_{c3} + r_{2} - r_{3} - 1.05p_{3} = 0   \\
+\end{split}
+\]
+
 
 		\subsection{?`Cuál es el plan Óptimo?}
 
@@ -279,6 +293,30 @@
 		\subsection{Escribir el problema dual del formulado en el apartado (a).}
 
 			\paragraph{}
+
+			\[
+			  \begin{array}{r@{}r@{}r@{}r@{}r@{}r@{}l}
+			    \text{Max} \quad z = 16200w_{6} \\[\jot]
+			    \text{sujeto a}\qquad 	1800w_{1} 	&{} 		&{} 		&{} +2225w_{4} 	&{} 			&{}			\geq 0 \\
+			                     		1800w_{1} 	&{} 		&{} 		&{} +875w_{4}	&{} +1820w_{5}	&{}			\geq 0 \\
+								 		1800w_{1} 	&{} 		&{} 		&{} +875w_{4}	&{} +920w_{5}	&{} 		\geq 1430 \\
+								 		900w_{1}  	&{} 		&{} 		&{} +1010w_{4}	&{} 			&{}     	\geq 0  \\
+								 		900w_{1}  	&{} 		&{} 		&{} +335w_{4}	&{} +826w_{5}	&{}  		\geq 0 \\
+										900w_{1}    &{} 		&{} 		&{} +335w_{4} 	&{} +376w_{5}	&{}  		\geq 624 \\
+										1200w_{1}   &{}  		&{} 		&{} +1350w_{4}	&{} 			&{}  		\geq 0 \\
+										1200w_{1}   &{}  		&{} 		&{} +450w_{4}	&{} +1200w_{5}	&{} 		\geq 0 \\
+										1200w_{1}  	&{} 		&{} 	 	&{} +450w_{4}	&{} +600w_{5}	&{} 		\geq 550 \\
+										-w_{1}		&{}-0.7 w_{2}&{}-0.4w_{3}&{} 			&{} 			&{} + w_{6} \geq 0 \\
+										-w_{1}		&{}+0.3 w_{2}&{}-0.4w_{3}&{}-1.05w_{4} 	&{} 			&{} 		\geq 0 \\
+										-w_{1}		&{}+0.3 w_{2}&{}+0.6w_{3}&{}-0.05w_{4} 	&{} -1.05w_{5}	&{} 		\geq 0 \\
+													&{} 		&{} 	 	&{}w_{4} 		&{} 			&{} + w_{6}	\geq 0 \\
+													&{} 		&{}  		&{}-w_{4} 	 	&{} +w_{5}		&{}			\geq 0 \\
+													&{} 		&{}  		&{} 			&{} -w_{5}		&{}			\geq 1 \\
+			     \multicolumn{6}{c}{w_{1}, w_{2}, w_{3} \leq 0, w_{4}, w_{5}, w_{6}, w_{7} \geq 0}
+
+
+			  \end{array}
+			\]
 
 
 		\subsection{Determinar la solución Óptima del problema formulado en (c) utilizando las condiciones de holgura complementaria.}

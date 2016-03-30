@@ -325,6 +325,19 @@
 		\subsection{Formular un modelo de PL para determinar el plan Óptimo de compras y de pagos que maximice los beneficios al final del periodo de tres años.}
 
 			\paragraph{}
+			El problema se ha formulado entendiendo del enunciado los siguiente: Se puede comprar equipos tan solo al principio de la planificación. Estos se pagarán en tres plazos, el primero en el momento de la compra de al menos el 30\%, el segundo del al menos el 60\% cuando haya pasado un año y el ultimo cuando haya pasado otro año completando el importe restante. Además cada año se paga un 5\% de interés por el porcentaje de pago que todavía no se ha completado. Los equipos se pueden vender en cualquier momento devaluandose un 25\% cada año. El presupuesto disponible al principio de la planificación es de 16200 \euro y cada año se pueden utilizar los ingresos para pagar los equipos.
+
+			\paragraph{}
+			Para modelizar el problema según el razonamiento expuesto se han utilizado las siguientes variables:
+
+			\begin{itemize}
+				\item \(v_{ij} = \) Número de equipos comprados al principio de la planificación del tipo i que se venderán al final del año j \(i = (a,b,c), j=(1,2,3)\)
+				\item \(p_{i} = \) Cantidad de euros que se pagará al inicio del año i por los equipos(sin incluir intereses). \(i = (a,b,c)\)
+				\item \(r_{i} = \) Cantidad de euros que sobran (son beneficios) al final del año i. \(i = (a,b,c)\)
+			\end{itemize}
+
+			\paragraph{}
+			La modelización del problema es por tanto la siguiente:
 
 			\[
 			\begin{split}
@@ -353,9 +366,9 @@
 			\paragraph{}
 			\textbf{Solución:} El plan óptimo es la compra de \textbf{30 equipos de tipo A}, los cuales se pagaran de la siguiente forma:
 			\begin{itemize}
-				\item \textbf{16200} u.m. en el momento de la compra.
-				\item 24360 u.m. más intereses en el segundo plazo, es decir, \textbf{26250} u.m.
-				\item 13440 u.m. más intereses en el ultimo plazo, es decir, \textbf{14112} u.m.
+				\item \textbf{16200} \euro en el momento de la compra.
+				\item 24360 \euro más intereses en el segundo plazo, es decir, \textbf{26250} \euro
+				\item 13440 \euro más intereses en el ultimo plazo, es decir, \textbf{14112} \euro
 			\end{itemize}
 
 		\subsection{Escribir el problema dual del formulado en el apartado (a).}

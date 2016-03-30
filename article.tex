@@ -132,9 +132,11 @@
 		\subsection{Sin realizar iteraciones, obtener la nueva solución si el número de cartuchos disponibles en la tienda número 3 disminuye a 65 y el de la tienda 5 aumenta a 135 unidades. Justificar la respuesta.}
 
 			\paragraph{}
+			Tenemos que realizar un análisis de sensibilidad debido a un cambio el vector del lado derecho (LD).
 
 
 			\[
+			b^{'0} = B^{-1}b^{'} =
 			\begin{bmatrix}
 			    5 \\
 			    5 \\
@@ -176,13 +178,20 @@
 			\end{bmatrix}
 			\]
 
+			\paragraph{}
+			Dado que todas las variables de este quedan positivas sabemos que la base anterior sigue siendo una solución básica factible, por tanto la nueva solución es:
 
-		\subsection{Sin resolver desde el principio el problema y utilizando la tabla sÌmplex Óptima, determinar la nueva solución si el número de cartuchos de la tienda número 2 disminuye a 65 y el de la tienda 5 aumenta a 135 unidades. Justificar la respuesta.}
+			\(x_{41}^{*} = 5 \), \(x_{42}^{*} = 25 \), \(x_{43}^{*} = 35 \), \(x_{56}^{*} = 25 \) lo cual resulta en \[
+				z^{'*} = z^{0} -5 *(-60) + 5*0 = 4850 + 300 = 5160
+			\]
+
+		\subsection{Sin resolver desde el principio el problema y utilizando la tabla simplex Óptima, determinar la nueva solución si el número de cartuchos de la tienda número 2 disminuye a 65 y el de la tienda 5 aumenta a 135 unidades. Justificar la respuesta.}
 
 			\paragraph{}
-
+			Tenemos que realizar un análisis de sensibilidad debido a un cambio el vector del lado derecho (LD).
 
 			\[
+			b^{'0} = B^{-1}b^{'} =
 			\begin{bmatrix}
 				5 \\
 				5 \\
@@ -224,6 +233,18 @@
 			\end{bmatrix}
 			\]
 
+			\paragraph{}
+			En este caso el vector del lado derecho ha sido modificado dando lugar a que algunas de sus componentes pasen a ser negativas, por lo que ya no será una solución básica factible por lo que tendremos que realizar iteracciónes hasta llegar otra vez a ella.
+
+			\[
+				z^{'*} = z^{0} -10 *(-76) +5*0 = 4850 + 760 = 5610
+			\]
+
+			El resultado de realizar iteracciones (sale la variable de holgura asociada a la primera restricción y entra \(x_{53}\) da como resultado óptimo:
+			\(x_{41}^{*} = 5 \), \(x_{42}^{*} = 35 \), \(x_{43}^{*} = 25 \), \(x_{56}^{*} = 25 \), \(x_{53}^{*} = 5 \) lo cual resulta en \[
+				z^{*} = 5610
+			\]
+
 		\subsection{Escribir el problema dual del formulado en el apartado (a)}
 
 			\paragraph{}
@@ -252,7 +273,42 @@
 		\subsection{Resolver el problema del apartado (e) utilizando las condiciones de holgura complementaria. ?`Es única la solución? Razonar la respuesta.}
 
 			\paragraph{}
+			Aplicando el teorema de holgura complementaria llegamos a las siguientes ecuaciones(se han omitido aquellas que iban a ser triviales al dar valores a las variables \(x_{ij}\)):
 
+			\[
+			\begin{split}
+				(w_{1} + w_{4} - 80)x_{41} = 0 \\
+				(w_{1} + w_{5} - 76)x_{41} = 0 \\
+				(w_{1} + w_{6} - 60)x_{41} = 0 \\
+				(w_{2} + w_{7} - 30)x_{41} = 0 \\
+			\end{split}
+			\]
+
+			\paragraph{}
+			Ahora sustituimos \(x_{ij}\) por los valores óptimos del problema primal:
+
+			\[
+			\begin{split}
+				(w_{1} + w_{4} - 80)5 = 0 \\
+				(w_{1} + w_{5} - 76)25 = 0 \\
+				(w_{1} + w_{6} - 60)30 = 0 \\
+				(w_{2} + w_{7} - 30)25 = 0 \\
+			\end{split}
+			\]
+			\paragraph{}
+			Operando llegamos al siguiente resultado, que como vemos es un sistema compatible indeterminado, por tanto tiene infinitas soluciones:
+
+			\[
+			\begin{split}
+				w_{1} + w_{4} = 80 \\
+				w_{1} + w_{5} = 76 \\
+				w_{1} + w_{6} = 60 \\
+				w_{2} + w_{7} = 30 \\
+			\end{split}
+			\]
+
+			\paragraph{}
+			Una solucion, por tanto, es: \(w_{4}^{*} = 80 \), \(w_{5}^{*} = 76 \), \(w_{6}^{*} = 60 \), \(w_{7}^{*} = 30 \)lo cual resulta en \(z^{*} = 4850\)
 
 		\subsection{Suponer ahora que los cartuchos se pueden enviar entre todas las tiendas conectadas. Modelizar, sin resolver, este nuevo problema.}
 
@@ -271,7 +327,7 @@
 			\paragraph{}
 
 			\[
-\begin{split}
+			\begin{split}
 				\text{Min} \quad z =1430v_{a3} + 624v{b3} + 550v_{c3} + r_{3}  \\
 									\\ \\
 				\text{sujeto a}
@@ -281,18 +337,31 @@
 				\qquad 	2225v_{a1} + 875v_{a2} + 875v_{a3} + 1010v_{b1} + 335v_{b2} + 335v_{b3} + 1350v_{c1} \\
 				+ 450v_{c2} + 450v_{c3} + r_{1} - r_{2} - 1.05p_{2} - 0.05p_{3}  = 0  \\ \\
 				\qquad 	1820v_{a2} + 920v_{a3} + 826v_{b2} + 376v_{b3} + 1200v_{c2} + 600v_{c3} + r_{2} - r_{3} - 1.05p_{3} = 0   \\
-\end{split}
-\]
+			\end{split}
+			\]
 
+			\paragraph{}
+			La tabla simplex final resultante es la siguiente:
+
+			\begin{figure}[H]
+			\centering
+				\includegraphics[width=\textwidth]{res/Exercise_2_pp_simplex_final.png}
+			\end{figure}
 
 		\subsection{?`Cuál es el plan Óptimo?}
 
 			\paragraph{}
-
+			\textbf{Solución:} El plan óptimo es la compra de \textbf{30 equipos de tipo A}, los cuales se pagaran de la siguiente forma:
+			\begin{itemize}
+				\item \textbf{16200} u.m. en el momento de la compra.
+				\item 24360 u.m. más intereses en el segundo plazo, es decir, \textbf{26250} u.m.
+				\item 13440 u.m. más intereses en el ultimo plazo, es decir, \textbf{14112} u.m.
+			\end{itemize}
 
 		\subsection{Escribir el problema dual del formulado en el apartado (a).}
 
 			\paragraph{}
+			El problema dual asociado al formulado en el apartado (a) es el siguiente. Consiste en hacer que las restricciones pasen a ser variables y viceversa, aplicando los correspondientes cambios.
 
 			\[
 			  \begin{array}{r@{}r@{}r@{}r@{}r@{}r@{}l}
@@ -312,7 +381,7 @@
 													&{} 		&{} 	 	&{}w_{4} 		&{} 			&{} + w_{6}	\geq 0 \\
 													&{} 		&{}  		&{}-w_{4} 	 	&{} +w_{5}		&{}			\geq 0 \\
 													&{} 		&{}  		&{} 			&{} -w_{5}		&{}			\geq 1 \\
-			     \multicolumn{6}{c}{w_{1}, w_{2}, w_{3} \leq 0, w_{4}, w_{5}, w_{6}, w_{7} \geq 0}
+			     \multicolumn{6}{c}{ w_{2}, w_{3} \geq 0, w_{1}, w_{4}, w_{5}, w_{6} s.r.s}
 
 
 			  \end{array}
@@ -322,11 +391,13 @@
 		\subsection{Determinar la solución Óptima del problema formulado en (c) utilizando las condiciones de holgura complementaria.}
 
 			\paragraph{}
+			Aplicando el teorema de holgura complementaria llegamos a la siguiente solución: \(w_{1}^{*} = 1.82 \), \(w_{2}^{*} = 2.38 \), \(w_{4}^{*} = -1.05 \), \(w_{5}^{*} = -1 \), \(w_{6}^{*} = 3.48 \)lo cual resulta en \(z^{*} = 56388\)
 
 
 		\subsection{Interpretar la variable dual asociada a la restricción del presupuesto disponible.}
 
 			\paragraph{}
+			Esta variable indica la proporción máxima de intereses que debemos estar dispuestos por los pagos a plazos de los equipos para que la solución encontrada siga siendo óptima.
 
 
 \end{document}

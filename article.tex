@@ -313,7 +313,26 @@
 		\subsection{Suponer ahora que los cartuchos se pueden enviar entre todas las tiendas conectadas. Modelizar, sin resolver, este nuevo problema.}
 
 			\paragraph{}
-
+			\[
+			    \small
+			    \begin{split}
+				    \text{Min} \quad z = 35(x_{12}+x_{21}) + 50(x_{13}+x_{31}) + 80(x_{14}+x_{41}) + 96(x_{15}+x_{51}) \\
+			        + 44(x_{23}+x_{32}) + 76(x_{24}+x_{42})+ 84(x_{25}+x_{52}) + 60(x_{34}+x_{43}) \\
+			        + 60(x_{35}+x_{53}) + 70(x_{36}+x_{63}) + 130(x_{37}+x_{73}) + 22(x_{45}+x_{54})  \\
+			        + 40(x_{46}+x_{64}) + 60(x_{47}+x_{74}) + 30(x_{56}+x_{65}) + 55(x_{57}+x_{75}) \\
+			        + 70(x_{67}+x_{76})  \\
+			                            \\
+			        \text{sujeto a}
+			        \qquad 	x_{21} - x_{12} + x_{31} - x_{13} + x_{41} - x_{14} + x_{51} - x_{15}  \geq 5  \\
+			        \qquad 	x_{12} - x_{21} + x_{32} - x_{23} + x_{42} - x_{24} + x_{52} - x_{25}  \geq 25  \\
+			        \qquad 	x_{13} - x_{31} + x_{23} - x_{32} + x_{43} - x_{34} + x_{53} - x_{35} + x_{63} - x_{36} + x_{73} - x_{37} \geq 30  \\
+			        \qquad 	x_{14} - x_{41} + x_{24} - x_{42} + x_{34} - x_{43} + x_{54} - x_{45} + x_{64} - x_{46} + x_{74} - x_{47} \geq -65  \\
+			        \qquad 	x_{15} - x_{51} + x_{25} - x_{52} + x_{35} - x_{53} + x_{45} - x_{54} + x_{65} - x_{56} + x_{75} - x_{57}  \geq -30  \\
+			        \qquad 	x_{36} - x_{63} + x_{46} - x_{64} + x_{56} - x_{65} + x_{76} - x_{67}  \geq 25  \\
+			        \qquad 	x_{37} - x_{73} + x_{47} - x_{74} + x_{57} - x_{76} + x_{67} - x_{76}  \geq -20  \\
+			        \qquad  x_{ij} \geq 0, i=1,2,3,4,5,7. \quad j=1,2,3,4,5,6,7.
+			    \end{split}
+			    \]
 
     \section{Ejercicio 2}
 

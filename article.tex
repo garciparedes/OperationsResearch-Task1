@@ -409,12 +409,7 @@
 		\subsection{?`Cuál es el plan Óptimo?}
 
 			\paragraph{}
-			\textbf{Solución:} El plan óptimo es la compra de \textbf{30 equipos de tipo A}, los cuales se pagaran de la siguiente forma:
-			\begin{itemize}
-				\item \textbf{16200} \euro en el momento de la compra.
-				\item 24360 \euro más intereses en el segundo plazo, es decir, \textbf{26250} \euro
-				\item 13440 \euro más intereses en el ultimo plazo, es decir, \textbf{14112} \euro
-			\end{itemize}
+			\textbf{Solución:} El plan óptimo es la compra de \textbf{9 equipos de tipo A}, los cuales se pagarán en su totalidad en el primer plazo, consiguiendo así una reducción de costes debido a que no habrá que pagar intereses por la compra.
 
 		\subsection{Escribir el problema dual del formulado en el apartado (a).}
 
@@ -422,26 +417,15 @@
 			El problema dual asociado al formulado en el apartado (a) es el siguiente. Consiste en hacer que las restricciones pasen a ser variables y viceversa, aplicando los correspondientes cambios.
 
 			\[
-			  \begin{array}{r@{}r@{}r@{}r@{}r@{}r@{}l}
-			    \text{Max} \quad z = 16200w_{6} \\[\jot]
-			    \text{sujeto a}\qquad 	1800w_{1} 	&{} 		&{} 		&{} +2225w_{4} 	&{} 			&{}			\geq 0 \\
-			                     		1800w_{1} 	&{} 		&{} 		&{} +875w_{4}	&{} +1820w_{5}	&{}			\geq 0 \\
-								 		1800w_{1} 	&{} 		&{} 		&{} +875w_{4}	&{} +920w_{5}	&{} 		\geq 1430 \\
-								 		900w_{1}  	&{} 		&{} 		&{} +1010w_{4}	&{} 			&{}     	\geq 0  \\
-								 		900w_{1}  	&{} 		&{} 		&{} +335w_{4}	&{} +826w_{5}	&{}  		\geq 0 \\
-										900w_{1}    &{} 		&{} 		&{} +335w_{4} 	&{} +376w_{5}	&{}  		\geq 624 \\
-										1200w_{1}   &{}  		&{} 		&{} +1350w_{4}	&{} 			&{}  		\geq 0 \\
-										1200w_{1}   &{}  		&{} 		&{} +450w_{4}	&{} +1200w_{5}	&{} 		\geq 0 \\
-										1200w_{1}  	&{} 		&{} 	 	&{} +450w_{4}	&{} +600w_{5}	&{} 		\geq 550 \\
-										-w_{1}		&{}-0.7 w_{2}&{}-0.4w_{3}&{} 			&{} 			&{} + w_{6} \geq 0 \\
-										-w_{1}		&{}+0.3 w_{2}&{}-0.4w_{3}&{}-1.05w_{4} 	&{} 			&{} 		\geq 0 \\
-										-w_{1}		&{}+0.3 w_{2}&{}+0.6w_{3}&{}-0.05w_{4} 	&{} -1.05w_{5}	&{} 		\geq 0 \\
-													&{} 		&{} 	 	&{}w_{4} 		&{} 			&{} + w_{6}	\geq 0 \\
-													&{} 		&{}  		&{}-w_{4} 	 	&{} +w_{5}		&{}			\geq 0 \\
-													&{} 		&{}  		&{} 			&{} -w_{5}		&{}			\geq 1 \\
-			     \multicolumn{6}{c}{ w_{2}, w_{3} \geq 0, w_{1}, w_{4}, w_{5}, w_{6} s.r.s}
-
-
+			  \begin{array}{r@{}r@{}r@{}r@{}l}
+			    \text{Min} \quad z = 16200w_{1} \\[\jot]
+			    \text{sujeto a}\qquad 	1800w_{1} 	&{}+540w_{2}&{}	+1134w_{3} 		&{} +1984.5w_{4} 	\geq 5025 \\
+			                     		900w_{1} 	&{}+270w_{2}&{}	+567w_{3} 		&{} +992.25w_{4}	\geq 2 \\
+								 		1200w_{1} 	&{}+360w_{2}&{} +756w_{3}		&{} +1323w_{4}		\geq 2 \\
+								 		  			&{}º   w_{2}&{} +0.63w_{3}		&{} +1.1025w_{4}	\leq 1  \\
+								 		  			&{} 		&{} 	w_{3}		&{} +1.05w_{4}		\leq 1 \\
+										    		&{} 		&{} 				&{} w_{4} 			\leq 1 \\
+			     \multicolumn{3}{c}{ w_{2},w_{2},w_{3} \geq 0,  w_{4} s.r.s}
 			  \end{array}
 			\]
 
@@ -452,21 +436,18 @@
 			Aplicando el teorema de holgura complementaria llegamos a las siguientes ecuaciones(se han omitido aquellas que iban a ser triviales al dar valores a las variables):
 			\[
 			\begin{split}
-				(1800w_{1} + 875w_{4} + 920w_{5} - 1430)v_{a3} = 0 \\
-				(-w_{1} + -0.7w_{2} -0.4w{3} +w_{6})p_{1} = 0 \\
-				(-w_{1} + 0.3w_{2} -0.4w{3} -1.05w_{4})p_{2} = 0 \\
-				(-w_{1} + 0.3w_{2} 0.6w{3} -0.05w_{4} -1.05w_{5})p_{3} = 0 \\
-				(-w_{5} - 1)r_{3} = 0 \\
+				(1800w_{1} + 540w_{2} + 1134w_{3} + 1984.5w_{4} - 5025)A = 0 \\
+				(w_{2} +0.63w{3} + 1.1025w_{4} - 1)p_{1} = 0 \\
 			\end{split}
 			\]
 
-			Sustituyendo el las variables del problema primal por sus resultados óptimos llegamos a un sistema compatible indeterminado que por tanto tiene infinitas soluciones, una de ellas es: \(w_{1}^{*} = 1.82 \), \(w_{2}^{*} = 2.38 \), \(w_{4}^{*} = -1.05 \), \(w_{5}^{*} = -1 \), \(w_{6}^{*} = 3.48 \)lo cual resulta en \(z^{*} = 56388\)
+			Sustituyendo el las variables del problema primal por sus resultados óptimos llegamos a un sistema compatible indeterminado que por tanto tiene infinitas soluciones, una de ellas es: \(w_{1}^{*} = 1.79 \), \(w_{4}^{*} = 0.91 \), lo cual resulta en \(z^{*} = 29025\)
 
 
 		\subsection{Interpretar la variable dual asociada a la restricción del presupuesto disponible.}
 
 			\paragraph{}
-			Esta variable indica la proporción máxima de intereses que debemos estar dispuestos por los pagos a plazos de los equipos para que la solución encontrada siga siendo óptima.
+			Esta variable indica la variación producida por un incremento unitario en el presupuesto inicial, es decir, por cada euro más de inversión obtendremos un beneficio de 1.79 \euro más al final de los tres años.
 
 
 \end{document}
